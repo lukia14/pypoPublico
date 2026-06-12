@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYPO - Material Didático</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/material.css') }}">
+</head>
+<body>
+
+<a href="{{ url_for('modulo') }}" class="btn-voltar">
+    <i class="fa-solid fa-chevron-left"></i> Voltar
+</a>
+
+<div class="container">
+    <div class="header">
+        <h1 class="titulo"><i class="fa-solid fa-book-bookmark"></i> Trilhas de Aprendizado</h1>
+        <p class="subtitulo">Acesse conteúdos, assista às aulas e pratique direto no Sandbox</p>
+    </div>
+
+    <div class="abas-container">
+        
+        <input type="radio" id="tab1" name="navegador" checked>
+        <input type="radio" id="tab2" name="navegador">
+        <input type="radio" id="tab3" name="navegador">
+
+        <div class="barra-navegador">
+            <label for="tab1" class="aba-label" id="label-tab1">
+                <i class="fa-solid fa-file-lines"></i> Conteúdo Escrito
+            </label>
+            <label for="tab2" class="aba-label" id="label-tab2">
+                <i class="fa-solid fa-video"></i> Videoaulas
+            </label>
+            <label for="tab3" class="aba-label" id="label-tab3">
+                <i class="fa-solid fa-code"></i> Praticar Exercícios
+            </label>
+        </div>
+
+        <div id="conteudo-material" class="painel-conteudo">
+            <div class="artigo-didatico">
+               {{fase.materialApoio | safe}}
+            </div>
+        </div>
+
+        <div id="conteudo-videos" class="painel-conteudo">
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Aula 1: Configurando o Ambiente e Primeiro Print</h4>
+                        <p class="video-descricao">Duração: 12 minutos • Nesta aula aprenderemos os conceitos iniciais da sintaxe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="conteudo-exercicios" class="painel-conteudo">
+            <div class="lista-exercicios">
+                <div class="exercicio-item">
+                    <div class="exercicio-info">
+                        <h4>Exercícios</h4>
+                    </div>
+                    <a href="{{ url_for('fase', idFase=fase.idFase) }}" class="btn-resolver">
+                        <i class="fa-solid fa-play"></i> Resolver
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

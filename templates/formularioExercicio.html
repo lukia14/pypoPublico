@@ -1,0 +1,56 @@
+{% extends "template.html" %}
+{%block cabecalho%}
+  <link rel="stylesheet" href="{{url_for('static', filename ='styles/login.css')}}"/>
+ {%endblock%}
+
+{%block corpo%}
+<main class="container-main">
+  <div class="container-principal">
+      <h1>Cadastrar Exercício</h1>
+      <form action = "{{url_for(aoEnviar)}}" method="post">
+        <input type="hidden" name="proxima" value="{{ proxima }}">
+        {{ form.csrf_token() }}
+
+
+        {{form.idExercicio.label()}}
+        {{ form.idExercicio(class="barra")}}
+        
+        {{form.numero.label()}}
+        {{ form.numero(class="barra")}}
+
+        {{form.idFase.label()}}
+        {{ form.idFase(class="barra")}}
+
+        {{form.titulo.label()}}
+        {{ form.titulo(class="barra")}}
+
+        {{form.enunciado.label()}}
+        {{ form.enunciado(class="barra")}}
+
+        {{form.alternativaA.label()}}
+        {{ form.alternativaA(class="barra")}}
+        
+        {{form.alternativaB.label()}}
+        {{ form.alternativaB(class="barra")}}
+
+        {{form.alternativaC.label()}}
+        {{ form.alternativaC(class="barra")}}
+
+        {{form.alternativaD.label()}}
+        {{ form.alternativaD(class="barra")}}
+
+        {{form.resposta.label()}}
+        {{ form.resposta(class="barra")}}
+
+        {{ form.enviar(class = ".button") }}
+      </form>
+    </div>
+       <div>
+            <img src="../static/imagens/mascote.png" alt="">
+        </div>
+   
+</main>
+{%endblock%}
+
+
+

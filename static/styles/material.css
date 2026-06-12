@@ -1,0 +1,265 @@
+/* --- CONFIGURAÇÕES GERAIS E RESET --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle, #1a444e 0%, #11262b 100%);
+    color: #ffffff;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* --- CABEÇALHO --- */
+.header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.titulo {
+    color: #38b6ff;
+    font-size: 2.2rem;
+    margin: 0 0 10px 0;
+    text-shadow: 0 0 10px rgba(56, 182, 255, 0.3);
+}
+
+.subtitulo {
+    color: #e0e6ed; 
+    margin: 0;
+}
+
+/* --- ESTRUTURA DO NAVEGADOR (ABAS) --- */
+.abas-container {
+    background-color: rgba(13, 31, 61, 0.4);
+    border: 1px solid rgba(56, 182, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Barra superior imitando as abas do navegador */
+.barra-navegador {
+    background-color: #091220;
+    display: block; /* Modificado de flex para block para funcionar com a folha de estilo sequencial */
+    padding: 10px 10px 0 10px;
+    border-bottom: 1px solid rgba(56, 182, 255, 0.2);
+}
+
+/* Ocultar os inputs de rádio estruturais */
+input[type="radio"] {
+    display: none;
+}
+
+/* Estilização padrão das abas */
+.aba-label {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #a9b2c3;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-right: 5px;
+}
+
+.aba-label:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* --- PAINÉIS DE CONTEÚDO (ESCONDIDOS POR PADRÃO) --- */
+.painel-conteudo {
+    display: none;
+    padding: 30px;
+    background-color: rgba(9, 18, 32, 0.6);
+    min-height: 400px;
+    line-height: 1.6;
+}
+
+/* --- INTERATIVIDADE DAS ABAS (CSS PURO COM SELETORES) --- */
+#tab1:checked ~ .barra-navegador #label-tab1,
+#tab2:checked ~ .barra-navegador #label-tab2,
+#tab3:checked ~ .barra-navegador #label-tab3 {
+    background-color: rgba(9, 18, 32, 0.6);
+    color: #38b6ff;
+    border-color: rgba(56, 182, 255, 0.2);
+    font-weight: 600;
+    position: relative;
+}
+
+/* Ativa a exibição do painel correspondente ao rádio marcado */
+#tab1:checked ~ #conteudo-material,
+#tab2:checked ~ #conteudo-videos,
+#tab3:checked ~ #conteudo-exercicios {
+    display: block;
+}
+
+/* --- ESTILIZAÇÃO INTERNA: ABA 1 (MATERIAL) --- */
+.artigo-didatico h2 {
+    color: #38b6ff;
+    margin-top: 0;
+}
+
+.artigo-didatico code {
+    background-color: #091220;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #ff79c6;
+}
+
+.destaque-nota {
+    background-color: rgba(56, 182, 255, 0.1);
+    border-left: 4px solid #38b6ff;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+.codigo-bloco {
+    background-color: #091220; 
+    padding: 15px; 
+    border-radius: 6px; 
+    font-family: monospace; 
+    color: #a9ffb4;
+    margin: 10px 0;
+}
+
+/* --- ESTILIZAÇÃO INTERNA: ABA 2 (VÍDEOS) --- */
+.video-grid {
+    display: block;
+}
+
+.video-card {
+    background-color: #091220;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    max-width: 100%;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Mantém proporção de cinema 16:9 */
+    height: 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-info {
+    padding: 15px;
+}
+
+.video-info h4 {
+    margin: 0 0 5px 0;
+    color: #38b6ff;
+}
+
+.video-descricao {
+    margin: 0; 
+    color: #a9b2c3; 
+    font-size: 0.9rem;
+}
+
+/* --- ESTILIZAÇÃO INTERNA: ABA 3 (EXERCÍCIOS) --- */
+.lista-exercicios {
+    display: block;
+}
+
+.exercicio-item {
+    background-color: rgba(13, 31, 61, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden; /* Evita quebras de flutuação */
+}
+
+.exercicio-info {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.exercicio-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+}
+
+.exercicio-descricao {
+    margin: 0; 
+    color: #a9b2c3; 
+    font-size: 0.9rem;
+}
+
+.btn-resolver {
+    background-color: #23a851;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(35, 168, 81, 0.2);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-resolver:hover {
+    background-color: #1c873f;
+    transform: translateY(-1px);
+}
+/* --- BOTÃO VOLTAR --- */
+.btn-voltar {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    background-color: rgba(13, 31, 61, 0.6);
+    border: 1px solid rgba(56, 182, 255, 0.3);
+    color: #38b6ff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.btn-voltar:hover {
+    background-color: #38b6ff;
+    color: #091220;
+    box-shadow: 0 0 15px rgba(56, 182, 255, 0.4);
+    transform: translateX(-2px);
+}
+
+/* Responsividade para telas menores não esmagarem o botão */
+@media (max-width: 1100px) {
+    .btn-voltar {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+}

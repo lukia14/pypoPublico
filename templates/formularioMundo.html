@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+{%block cabecalho%}
+  <link rel="stylesheet" href="{{url_for('static', filename ='styles/login.css')}}"/>
+ {%endblock%}
+
+{%block corpo%}
+<main class="container-main">
+  <div class="container-principal">
+      <h1>{{ titulo }}</h1>
+      <form action = "{{url_for(aoEnviar)}}" method="post">
+        {{ form.csrf_token() }}
+
+        {{ form.idMundo.label() }}
+        {{ form.idMundo(class="barra") }}
+
+        {{ form.linguagem.label() }}
+        {{ form.linguagem(class="barra") }}
+
+        {{ form.enviar(class="button") }}
+      </form>
+    </div>
+       <div>
+            <img src="../static/imagens/mascote.png" alt="">
+        </div>
+   
+</main>
+{%endblock%}

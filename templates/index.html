@@ -1,0 +1,62 @@
+{%extends "template.html"%}
+{%block cabecalho%}
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/index.css')}}"/>
+    <script src="https://kit.fontawesome.com/74010bf13b.js" crossorigin="anonymous"></script>
+{%endblock%}
+
+{%block corpo%}
+    <header class="container-principal">
+        <div class="container-menu">
+            <h1 class="t1">PYPO</h1>
+            <div class="container-menu2">
+                <a href="{{url_for('login')}}" class="menu-item item1">Logar</a>
+                <a href="{{url_for('cadastrar')}}" class="menu-item item1">Cadastrar</a>
+                <a href="{{url_for('principal')}}" class="menu-item">Game</a>
+                <!-- <a href="#" class="menu-item">More</a> -->
+            </div>
+        </div>
+    </header>
+    <main class="main-principal">
+        <div class="slogan">
+            <p></p>
+        </div>
+        <div class="slideshow">
+            <div class="slide" style="background-image: url('../static/imagens/fundo1.jpg')"></div>
+            <div class="slide" style="background-image: url('../static/images/fundo2.jpg')"></div>
+            <div class="slide" style="background-image: url('../static/imagens/mascote.png')"></div>
+        </div>
+    </main>
+    <main class="container-2">
+        <div class="container-principal-caixas">
+
+            <div class="item">
+                <h2><i class="fa-solid fa-gamepad"></i>Gamificação</h2>
+                <p>Aprenda de forma divertida com desafios interativos e recompensas.</p>
+            </div>
+
+            <div class="item">
+                <h2><i class="fa-solid fa-lightbulb"></i>Portugol</h2>
+                <p>Domine lógica de programação com uma linguagem simples e educativa.</p>
+            </div>
+
+            <a class="item" href="{{url_for('listarExercicios')}}"><div>
+                <h2><i class="fa-solid fa-clipboard-list"></i>Exercícios</h2>
+                <p>Avance por níveis progressivos e aumente suas habilidades passo a passo.</p>
+            </div></a>
+
+            <div class="item">
+                <h2><i class="fa-solid fa-puzzle-piece"></i>Desafios</h2>
+                <p>Teste seus conhecimentos com exercícios práticos e estimulantes.</p>
+            </div>
+
+        </div>
+    </main>
+    <footer class="rodape">
+        <div>
+            <p>Desenvolvido por Lucas Silva Fernandes e Marco Antônio Pedroso Junqueira. <a href="" class="saibamais">Clique aqui</a> para saber mais.</p>
+            <p><i class="fa-brands fa-facebook"></i>projectPypo</p>
+            <p><i class="fa-brands fa-instagram"></i>pypo.project</p>
+            <p><i class="fa-brands fa-github"></i>Pypo_project</p>
+        </div>
+    </footer>
+{%endblock%}

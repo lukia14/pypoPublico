@@ -1,0 +1,205 @@
+:root {
+    --cor-de-fundo: #090d1a; /* Escurecido para destacar a pílula */
+    --branco: #ffffff;       /* Corrigido para branco real das fontes do Menu 2 */
+    --cor-de-fundo-caixa: #0b132b; /* Azul escuro idêntico ao fundo da pílula */
+    --azul-textos: #38bdf8;  /* Cyan/azul brilhante para os ícones */
+    --azul-diferente: #1e90ff;
+    --preto-moderno: #696969;
+    --preto-diferente: rgba(0,0,0,0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle, #1a444e 0%, #11262b 100%);
+    display: flex;
+    flex-direction: column; /* Alinhado verticalmente para o menu ficar no topo ou base */
+    height: 100vh;
+    background-color: var(--cor-de-fundo);
+}
+
+/* Transformando a Sidebar em uma Pílula Flutuante Horizontal */
+.sidebar {
+    background-color: rgba(13, 31, 61, 0.85);
+    width: max-content;
+    height: auto;
+    border-radius: 50px; /* Garante o formato arredondado de cápsula */
+    padding: 10px 30px;  /* Espaçamento interno idêntico ao Menu 2 */
+    margin: 20px auto;   /* Centraliza o menu na tela com margem */
+    display: flex;
+    flex-direction: row; /* Alinha os itens lado a lado */
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Sombra suave para dar profundidade */
+    border: none;        /* Remove a borda lateral antiga */
+}
+
+/* Se você quiser manter o título "PYPO", ele fica ao lado esquerdo */
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--azul-textos);
+    margin-bottom: 0;    /* Remove a margem inferior antiga */
+    margin-right: 30px;  /* Joga o menu um pouco para o lado */
+    text-transform: uppercase;
+}
+
+/* Ajustando a lista do menu para horizontal */
+.menu {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;          /* Espaçamento perfeito entre os botões */
+}
+
+.menu li {
+    margin-bottom: 0;   /* Remove o espaçamento vertical antigo */
+}
+
+/* Estilizando os Links e Ícones como no Menu 2 */
+.menu a {
+    text-decoration: none;
+    color: var(--branco); /* Texto do Menu 2 é inteiramente branco */
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;            /* Espaço entre o ícone e o texto */
+    padding: 8px 16px;
+    border-radius: 30px;
+    transition: all 0.2s ease;
+}
+
+/* Cor dos ícones dentro do menu (caso use tags <i> ou similar) */
+.menu a i, .menu a svg {
+    color: var(--azul-textos); /* Deixa apenas o ícone azul brilhante */
+    font-size: 18px;
+}
+
+/* Efeito Hover moderno */
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Efeito de vidro sutil ao passar o mouse */
+    color: var(--azul-textos);
+    transform: translateY(-1px);
+}
+
+/* Ajuste do container de conteúdo principal */
+.content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+
+.path-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    padding: 20px 0 100px 0;
+    width: 100%;
+    max-width: 800px; 
+}
+.phase.left {
+    transform: translateX(-150px); 
+}
+.phase.right {
+    transform: translateX(150px);
+}
+.phase.center {
+    transform: translateX(0);
+}
+.bubble {
+    width: 75px;
+    height: 75px;
+    background-color: var(--azul-diferente);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 28px;
+    font-weight: 800;
+    /* Alterado de var(--branco) para var(--azul-textos) para tirar o efeito branco */
+    box-shadow: 0 8px 0 var(--azul-textos); 
+    cursor: pointer;
+}
+
+.phase.start .bubble {
+    width: 95px;
+    height: 95px;
+    font-size: 34px;
+    background-color: var(--azul-textos); 
+    box-shadow: 0 8px 0 var(--azul-diferente);
+}
+/* 1. Atualize a classe .phase existente adicionando 'position: relative' */
+.phase {
+    text-decoration: none;
+    z-index: 1; 
+    transition: transform 0.2s;
+    position: relative; /* CRUCIAL: serve como âncora para o balãozinho não sumir da tela */
+    display: inline-block;
+}
+
+.phase:hover {
+    filter: brightness(1.1);
+}
+
+/* 2. ADICIONE ESTAS NOVAS REGRAS ABAIXO NO SEU ARQUIVO: */
+
+/* Estilização do Balãozinho (Tooltip) */
+.phase-tooltip {
+    position: absolute;
+    bottom: 125%; /* Subiu um pouco mais para dar espaço ao texto maior */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); 
+    background-color: var(--cor-de-fundo-caixa);
+    color: var(--branco);
+    
+    /* 📏 Aumentado o padding para acolher o texto grande */
+    padding: 12px 22px; 
+    border-radius: 10px;
+    
+    /* 🔤 Texto aumentado bastante e mais destacado */
+    font-size: 20px; 
+    font-weight: 700; 
+    
+    white-space: nowrap; 
+    
+    /* 🚫 Removida completamente qualquer borda */
+    border: none; 
+    
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    
+    /* Estado Inicial: Escondido */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; 
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+/* Ajuste na setinha para acompanhar o novo fundo sem borda */
+.phase-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px; /* Setinha levemente maior para combinar */
+    border-style: solid;
+    border-color: var(--cor-de-fundo-caixa) transparent transparent transparent;
+}
+
+/* Estado de Hover */
+.phase:hover .phase-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); 
+}

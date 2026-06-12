@@ -1,0 +1,92 @@
+{% extends "template.html" %}
+{% block cabecalho %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/listarExercicios.css') }}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block corpo %}
+<div class="crud-container">
+    
+    <div class="crud-header">
+        <div>
+            <h1 class="crud-titulo">Banco de Módulos </h1>
+            <p class="crud-subtitulo">Gerencie os módulos do sistema</p>
+        </div>
+        
+        <div class="header-acoes">
+            <a href="{{ url_for('index') }}" class="btn-voltar">
+                <i class="fa-solid fa-house"></i> Voltar 
+            </a>
+            <a href="{{ url_for('cadastrarModulo') }}" class="btn-novo-exercicio">
+                <i class="fa-solid fa-plus"></i> Novo Módulo
+            </a>
+        </div>
+    </div>
+    <div class="crud-nav-tabs">
+        <a href="{{ url_for('listarExercicios') }}" class="tab-item ">
+            <i class="fa-solid fa-code"></i> Exercício
+        </a>
+        <a href="{{ url_for('listarFases') }}" class="tab-item ">
+            <i class="fa-solid fa-layer-group"></i> Fase
+        </a>
+        <a href="{{ url_for('listarModulos') }}" class="tab-item active">
+            <i class="fa-solid fa-cubes"></i> Módulo
+        </a>
+        <a href="{{ url_for('listarMundos') }}" class="tab-item">
+            <i class="fa-solid fa-earth-americas"></i> Mundo
+        </a>
+        <a href="{{ url_for('listarItens') }}" class="tab-item">
+            <i class="fa-solid fa-box-open"></i> Item
+        </a>
+    </div>
+
+    <div class="tabela-responsiva">
+        <table class="tabela-exercicios">
+            <thead>
+                <tr>
+                    <th style="width: 80px;">Mundo/Nº</th>
+                    <th>Numero</th>
+                    <th>Nome</th>
+                    <th style="width: 150px; text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for modulo in listaModulos %}
+                <tr>
+                    <td data-label="Mundo/Nº">
+                        <span class="badge-fase">Mun{{ modulo.idMundo }} - Mod{{ modulo.idModulo }}</span>
+                    </td>
+                    
+                    <td data-label="numero" class="col-titulo">
+                        <strong>{{ modulo.numero }}</strong>
+                    </td>
+                    
+                    <td data-label="nome" class="col-enunciado">
+                        {{ modulo.nome }}
+                    </td>
+                    
+                    <td data-label="Ações" style="text-align: center;">
+                        <div class="grupo-acoes">
+                            <a href="{{ url_for('editarModulo', idModulo=modulo.idModulo) }}" class="btn-acao btn-alterar" title="Alterar Módulo">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            
+                            <a href="{{ url_for('deletarModulo', idModulo=modulo.idModulo) }}" class="btn-acao btn-apagar" title="Apagar Módulo" onclick="return confirm('Tem certeza que deseja apagar o módulo: {{ modulo.nome }}?')">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="tabela-vazia">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <p>Nenhum exercício cadastrado ainda.</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

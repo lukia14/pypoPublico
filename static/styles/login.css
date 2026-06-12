@@ -1,0 +1,119 @@
+:root{
+    --preto: #000;
+    --azul-claro: lightblue;
+    --branco: #E0E0E0;
+    --azul-diferente: #1E90FF;
+    --azul: blue;
+    --preto-diferente: rgba(0,0,0,0.2);
+    --cor-fundo: #1B263B;
+}
+
+body{
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    height: 100vh;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor-fundo);
+}
+.container-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.container-principal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+    padding: 45px 35px;
+    border-radius: 20px;
+    background-color: var(--branco);
+    box-shadow: 0px 6px 20px var(--preto-diferente);
+    width: 420px;
+    border: 2px solid var(--azul-diferente);
+}
+
+h1{
+    color: var(--preto);
+    margin: 17px 0px;
+    font-size:2.5rem;
+}
+
+.barra{
+    width: 100%;
+    border-radius: 10px;
+    font-size: 16px;
+    border: 1px solid var(--azul-diferente);
+    padding: 12px;
+    color: var(--preto);
+    transition: 0.2s;
+}
+
+.barra:focus{
+    outline: none;
+    border: 2px solid var(--azul-diferente);
+}
+
+.entrar{
+    width: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: var(--azul-claro);
+    background-color: var(--preto);
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    border: none;
+    margin: 10px 0px;
+}
+
+.entrar:hover{
+    background-color: var(--azul-diferente);
+    color: var(--branco);
+}
+
+.entrar_metodos{
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+    margin-bottom:10px;
+}
+
+.entrar_botoes{
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--azul-diferente);
+    font-size: 16px;
+    background-color: var(--branco);
+    color: var(--preto);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.entrar_botoes:hover{
+    background-color: var(--azul-claro);
+}
+
+.text_apoio{
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.apoio{
+    text-decoration: none;
+    color: var(--azul-diferente);
+}
+
+input::placeholder{
+    color: var(--preto);
+    opacity: 0.7;
+}

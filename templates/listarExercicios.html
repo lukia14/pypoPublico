@@ -1,0 +1,97 @@
+{% extends "template.html" %}
+{% block cabecalho %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/listarExercicios.css') }}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block corpo %}
+<div class="crud-container">
+    
+    <div class="crud-header">
+        <div>
+            <h1 class="crud-titulo">Banco de Exercícios</h1>
+            <p class="crud-subtitulo">Gerencie as questões, alternativas e respostas do sistema.</p>
+        </div>
+        
+        <div class="header-acoes">
+            <a href="{{ url_for('index') }}" class="btn-voltar">
+                <i class="fa-solid fa-house"></i> Voltar 
+            </a>
+            <a href="{{ url_for('cadastrarExercicio') }}" class="btn-novo-exercicio">
+                <i class="fa-solid fa-plus"></i> Novo Exercício
+            </a>
+        </div>
+    </div>
+    <div class="crud-nav-tabs">
+        <a href="{{ url_for('listarExercicios') }}" class="tab-item active">
+            <i class="fa-solid fa-code"></i> Exercício
+        </a>
+        <a href="{{ url_for('listarFases') }}" class="tab-item">
+            <i class="fa-solid fa-layer-group"></i> Fase
+        </a>
+        <a href="{{ url_for('listarModulos') }}" class="tab-item">
+            <i class="fa-solid fa-cubes"></i> Módulo
+        </a>
+        <a href="{{ url_for('listarMundos') }}" class="tab-item">
+            <i class="fa-solid fa-earth-americas"></i> Mundo
+        </a>
+        <a href="{{ url_for('listarItens') }}" class="tab-item">
+            <i class="fa-solid fa-box-open"></i> Item
+        </a>
+    </div>
+
+    <div class="tabela-responsiva">
+        <table class="tabela-exercicios">
+            <thead>
+                <tr>
+                    <th style="width: 80px;">Fase/Nº</th>
+                    <th>Título</th>
+                    <th>Enunciado</th>
+                    <th style="width: 90px; text-align: center;">Resposta</th>
+                    <th style="width: 150px; text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercicio in listaExercicios %}
+                <tr>
+                    <td data-label="Fase/Nº">
+                        <span class="badge-fase">F{{ exercicio.idFase }} - Ex{{ exercicio.numero }}</span>
+                    </td>
+                    
+                    <td data-label="Título" class="col-titulo">
+                        <strong>{{ exercicio.titulo }}</strong>
+                    </td>
+                    
+                    <td data-label="Enunciado" class="col-enunciado">
+                        {{ exercicio.enunciado }}
+                    </td>
+                    
+                    <td data-label="Resposta" style="text-align: center;">
+                        <span class="badge-resposta">Alt. {{ exercicio.resposta | upper }}</span>
+                    </td>
+                    
+                    <td data-label="Ações" style="text-align: center;">
+                        <div class="grupo-acoes">
+                            <a href="{{ url_for('editarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-alterar" title="Alterar Exercício">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            
+                            <a href="{{ url_for('deletarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-apagar" title="Apagar Exercício" onclick="return confirm('Tem certeza que deseja apagar o exercício: {{ exercicio.titulo }}?')">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="tabela-vazia">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <p>Nenhum exercício cadastrado ainda.</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

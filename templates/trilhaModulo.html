@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/trilhaModulo.css') }}">
+    <title>Trilha de Fases</title>
+</head>
+<script src="https://kit.fontawesome.com/74010bf13b.js" crossorigin="anonymous"></script>
+<body>
+    <nav class="sidebar">
+        <div class="logo">PYPO</div>
+        <ul class="menu">
+            <li><a href="{{ url_for('principal') }}"><i class="fa-solid fa-arrow-left" style="color: rgb(116, 192, 252);"></i>Voltar</a></li>
+            <li><a href="{{ url_for('configuracoes') }}" class="active"><i class="fa-solid fa-user" style="color: rgb(116, 192, 252);"></i>perfil</a></li>
+            <li><a href="{{ url_for('loja') }}"><i class="fa-solid fa-store" style="color: rgb(116, 192, 252);"></i>Loja</a></li>
+            <li><a href="#"><i class="fa-solid fa-trophy" style="color: rgb(116, 192, 252);"></i>Conquistas</a></li>
+            <li><a href="{{ url_for('logout') }}" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i>Sair</a></li>
+        </ul>
+    </nav>
+    <main class="content">
+        <div class="path-container">
+        {% for fase in listaFases %}
+            <a href="{{url_for('material', idFase=fase.idFase) }}" class="phase">
+                <div class="bubble">{{ loop.index }}</div>
+                
+                <span class="phase-tooltip">Fase {{ loop.index }}: {{ fase.titulo }}</span>
+            </a>
+        {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/conclusaoFase.css') }}">
+    <title>Conclusão Fase</title>
+</head>
+<body>
+    <main class="container">
+
+        <div class="card">
+
+            <div class="div-titulo">
+                <h1>Parabéns!!!</h1>
+            </div>
+
+            <div class="div-msg">
+                <p>Você concluiu a fase {{idFase}} com {{pontuacao}} pontos</p>
+            </div>
+
+            <div class="div-botao">
+                <a href="{{ url_for('index') }}"><button>OK</button></a>
+            </div>
+
+        </div>
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,554 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fundo padrão do projeto PYPO */
+.tela-loja-container {
+    background: radial-gradient(circle, #1a444e 0%, #11262b 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Barra Superior */
+.loja-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.saldo-usuario {
+    background-color: rgba(13, 31, 61, 0.85);
+    color: #ffffff;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Títulos */
+.titulo-loja {
+    color: #38b6ff;
+    font-size: 2.8rem;
+    margin: 10px 0 5px 0;
+    text-shadow: 0 0 15px rgba(56, 182, 255, 0.5);
+    text-transform: uppercase;
+}
+
+.subtitulo-loja {
+    color: #e0e6ed;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+#pontuacao {
+    font-weight: bold;
+}
+/* ==========================================================================
+   ALINHAMENTO EM COLUNAS (NOVO)
+   ========================================================================== */
+.layout-loja-corpo {
+    display: flex;
+    gap: 30px;
+    max-width: 1100px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+/* ==========================================================================
+   ESTILOS DO INVENTÁRIO (NOVO)
+   ========================================================================== */
+.secao-inventario {
+    flex: 0 0 280px; /* Largura fixa para o inventário */
+    background: linear-gradient(135deg, #13323a 0%, #0d1e22 100%);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(56, 182, 255, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 30px; /* Segue a rolagem da tela na vitrine */
+}
+
+.secao-inventario h2 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.secao-inventario h2 i {
+    color: #38b6ff;
+}
+
+/* Linhas dos itens do inventário */
+.item-inventario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(13, 31, 61, 0.4);
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    transition: all 0.2s ease;
+}
+
+.item-inventario:hover {
+    border-color: rgba(56, 182, 255, 0.3);
+    transform: translateX(3px);
+}
+
+.item-inventario .nome-item {
+    color: #e0e6ed;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.item-inventario .qtd-item {
+    background-color: #38b6ff;
+    color: #11262b;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.inventario-vazio {
+    color: #8fa0a6;
+    font-size: 0.9rem;
+    text-align: center;
+    font-style: italic;
+    padding: 10px 0;
+}
+
+/* Grid de itens ajustado para o layout colunar */
+.grid-loja {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 30px;
+    flex: 1; /* Ocupa o restante do espaço */
+}
+
+/* Card do Item */
+.card-item {
+    background: linear-gradient(135deg, #184282 0%, #0d2349 100%);
+    border-radius: 15px;
+    padding: 25px 20px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(56, 182, 255, 0.3);
+}
+
+/* Área que gerencia a troca de Ícone por Descrição */
+.area-interativa {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icone-item {
+    font-size: 3.5rem;
+    color: #38b6ff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.descricao-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+
+.descricao-item p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #e0e6ed;
+    margin: 0;
+}
+
+.card-item:hover .icone-item {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+.card-item:hover .descricao-item {
+    opacity: 1;
+    visibility: visible;
+}
+.card-item:hover .descricao-item p{
+    font-size: 1rem;
+}
+
+.nome-item {
+    font-size: 1.25rem;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.preco-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+/* Botão de Compra */
+.botao-comprar {
+    background-color: #1c82ff;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.botao-comprar:hover {
+    background-color: #0066e3;
+}
+
+.botao-comprar:active {
+    transform: scale(0.97);
+}
+
+/* Container de botões de saída */
+.grupo-botoes-sair {
+    display: flex;
+    gap: 12px;
+}
+
+.botao-sair-cancelar, .botao-sair-salvar {
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.botao-sair-cancelar {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #ff6b6b;
+    border: 1px solid rgba(220, 53, 69, 0.4);
+}
+
+.botao-sair-cancelar:hover {
+    background-color: rgba(220, 53, 69, 0.3);
+    transform: translateY(-2px);
+}
+
+.botao-sair-salvar {
+    background-color: #23a851;
+    color: #ffffff;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 12px rgba(35, 168, 81, 0.2);
+}
+
+.botao-sair-salvar:hover {
+    background-color: #1c873f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(35, 168, 81, 0.4);
+}
+
+/* Forçar o cabeçalho a aparecer com destaque */
+.inventario-cabecalho {
+    display: flex !important; /* Garante que o flexbox está ativo */
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 16px;
+    margin-bottom: 12px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.inventario-cabecalho .txt-coluna {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #ffffff; /* Mudamos para branco puro para dar contraste máximo */
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Container principal do inventário */
+#inventario-dados {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento vertical entre cada item */
+    max-height: 400px; /* Limita a altura máxima do inventário */
+    overflow-y: auto; /* Adiciona barra de rolagem se o jogador tiver muitos itens */
+    padding-right: 4px; /* Espaço para a barra de rolagem não cobrir o conteúdo */
+}
+
+/* Cada linha de item do inventário */
+.item-inventario {
+    display: flex;
+    justify-content: space-between; /* Nome na esquerda total, Qtd na direita total */
+    align-items: center; /* Alinha verticalmente os textos no centro da linha */
+    background-color: rgba(13, 31, 61, 0.4); /* Fundo escuro translúcido */
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.03); /* Borda sutil quase invisível */
+    transition: all 0.2s ease;
+}
+
+/* Efeito visual opcional ao passar o mouse por cima do item */
+.item-inventario:hover {
+    background-color: rgba(13, 31, 61, 0.6);
+    transform: translateX(3px); /* Dá um leve "pulo" para a direita */
+    border-color: rgba(56, 182, 255, 0.2); /* Acende levemente a borda */
+}
+
+/* Estilização do Nome do Item */
+.nome-item-inventario {
+    font-size: 0.95rem;
+    color: #ffffff; /* Texto branco */
+    font-weight: 500;
+    white-space: nowrap; /* Impede o texto de quebrar linha */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Se o nome for gigante, vira "..." automaticamente */
+    max-width: 75%; /* Garante espaço para a quantidade */
+}
+
+/* Estilização da Quantidade (Badge/Etiqueta) */
+.qtd-item-inventario {
+    color: #ffffff; /* Texto escuro por cima para dar excelente contraste */
+    font-size: 0.85rem;
+    font-weight: 700; /* Texto em negrito */
+    padding: 3px 10px;
+    border-radius: 6px;
+    min-width: 35px; /* Mantém o mesmo tamanho padrão caso seja só 1 dígito */
+    text-align: center;
+}
+
+/* --- EXTRA: Customização elegante da barra de rolagem (Scrollbar) se houver muitos itens --- */
+#inventario-dados::-webkit-scrollbar {
+    width: 6px;
+}
+#inventario-dados::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 10px;
+}
+#inventario-dados::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+#inventario-dados::-webkit-scrollbar-thumb:hover {
+    background: rgba(56, 182, 255, 0.4); /* Fica azul ao passar o mouse */
+}
+
+/* ==========================================================================
+   CONTEINER DAS NOTIFICAÇÕES (FLASH)
+   ========================================================================== */
+
+#flash-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999; /* Garante que ficará por cima de todo o layout do jogo */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento entre uma mensagem e outra, caso acumulem */
+    pointer-events: none; /* Impede que o container invisível bloqueie cliques na loja */
+}
+
+/* Estilo geral de cada caixinha de mensagem */
+.flash-message {
+    pointer-events: auto; /* Permite interagir com a mensagem se necessário */
+    min-width: 280px;
+    max-width: 400px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.4;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Animação para surgir da direita para a esquerda */
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    
+    /* Efeito sutil de transição para quando for removido */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ==========================================================================
+   VARIAÇÕES DE CORES (Tipos de Alerta)
+   ========================================================================== */
+
+/* 🟢 Sucesso: Compra realizada, pontos atualizados */
+.flash-sucesso {
+    background-color: #10b981;
+    border-left: 5px solid #047857;
+}
+
+/* 🟠 Alerta: Pontos insuficientes para comprar */
+.flash-alerta {
+    background-color: #f59e0b;
+    border-left: 5px solid #b45309;
+}
+
+/* 🔴 Erro: Bugs no servidor, rota crashou (500) ou erro crítico */
+.flash-erro {
+    background-color: #ef4444;
+    border-left: 5px solid #b91c1c;
+}
+
+/* ==========================================================================
+   KEYFRAMES (Animação de Entrada)
+   ========================================================================== */
+
+@keyframes slideIn {
+    from {
+        transform: translateX(120%); /* Começa totalmente fora da tela à direita */
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0); /* Para na posição certa */
+        opacity: 1;
+    }
+}
+/* ==========================================================================
+   RESPONSIVIDADE (MOBILE AJUSTADO)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    .layout-loja-corpo {
+        flex-direction: column; /* Joga o inventário para cima da vitrine no mobile */
+        gap: 20px;
+    }
+
+    .secao-inventario {
+        width: 100%;
+        flex: none;
+        position: static; /* Remove o sticky no mobile */
+    }
+
+    .titulo-loja {
+        font-size: 2rem;
+    }
+
+    .subtitulo-loja {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+
+    .loja-header-actions {
+        padding: 0 10px;
+        gap: 15px;
+    }
+
+    .saldo-usuario {
+        padding: 8px 15px;
+        font-size: 0.95rem;
+    }
+
+    .grid-loja {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+        padding: 0 10px;
+        width: 100%;
+    }
+
+    .card-item {
+        padding: 15px 10px;
+    }
+
+    .area-interativa {
+        height: auto;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .icone-item {
+        font-size: 2.5rem;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .descricao-item {
+        position: relative;
+        opacity: 1 !important;
+        visibility: visible !important;
+        height: auto;
+    }
+
+    .descricao-item p {
+        font-size: 0.8rem;
+        color: #b0c4de;
+    }
+
+    .nome-item {
+        font-size: 1.1rem;
+        margin: 8px 0;
+    }
+
+    .preco-item {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .botao-comprar {
+        padding: 10px 0;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .grid-loja {
+        grid-template-columns: 1fr;
+    }
+}

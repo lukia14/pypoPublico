@@ -1,0 +1,117 @@
+{% extends "template.html" %}
+{% block cabecalho %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/configuracoes.css') }}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block corpo %}
+<div class="crud-container">
+    
+    <div class="crud-header">
+        <div>
+            <h1 class="crud-titulo"><i class="fa-solid fa-gear"></i> Configurações</h1>
+            <p class="crud-subtitulo">Gerencie suas informações de perfil, credenciais de acesso e conta.</p>
+        </div>
+        <a href="{{ url_for('principal') }}" class="btn-voltar">
+            <i class="fa-solid fa-house"></i> Voltar Principal
+        </a>
+    </div>
+
+    <div class="config-estrutura">
+        
+        <div class="config-card">
+            <div class="card-header-pypo">
+                <h3><i class="fa-solid fa-user-gear"></i> Dados do Perfil</h3>
+                <p>Altere seu nome de usuário e e-mail de contato.</p>
+            </div>
+            
+            <form action="{{ url_for('alterarPerfil') }}" method="POST">
+                {{ formPerfil.csrf_token}}
+                <div class="form-linha">
+    
+                    <div class="form-grupo">
+                        {{ formPerfil.email.label(class='form-label') }}
+                        {{ formPerfil.email(class='input-pypo', value=usuario.email) }}
+                    </div>
+                </div>
+                <div class="form-acoes-salvar">
+                    <button type="submit" class="btn-salvar">
+                        <i class="fa-solid fa-floppy-disk"></i> Salvar Alterações
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="config-card">
+            <div class="card-header-pypo">
+                <h3><i class="fa-solid fa-lock"></i> Alterar Senha</h3>
+                <p>Mantenha sua conta segura atualizando sua senha regularmente.</p>
+            </div>
+            
+            <form action="{{ url_for('alterarSenha') }}" method="POST">
+                <form action="{{ url_for('alterarSenha') }}" method="POST">
+    {{ formSenha.csrf_token }}
+    
+    <div class="form-grupo mb-3">
+        {{ formSenha.senhaAntiga.label(class='form-label') }}
+        {{ formSenha.senhaAntiga(class='input-pypo', placeholder='••••••••') }}
+        {% if formSenha.senhaAntiga.errors %}
+            {% for error in formSenha.senhaAntiga.errors %}
+                <span class="txt-erro-pypo">{{ error }}</span>
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+    <div class="form-linha">
+        <div class="form-grupo">
+            {{ formSenha.novaSenha.label(class='form-label') }}
+            {{ formSenha.novaSenha(class='input-pypo', placeholder='Mínimo 6 caracteres') }}
+            {% if formSenha.novaSenha.errors %}
+                {% for error in formSenha.novaSenha.errors %}
+                    <span class="txt-erro-pypo">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-grupo">
+            {{ formSenha.confirmarSenha.label(class='form-label') }}
+            {{ formSenha.confirmarSenha(class='input-pypo', placeholder='Repita a nova senha') }}
+            {% if formSenha.confirmarSenha.errors %}
+                {% for error in formSenha.confirmarSenha.errors %}
+                    <span class="txt-erro-pypo">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="form-acoes-salvar">
+        <button type="submit" class="btn-salvar">
+            <i class="fa-solid fa-key"></i> Atualizar Senha
+        </button>
+    </div>
+</form>
+        </div>
+
+        <div class="config-card card-perigo">
+            <div class="card-header-pypo border-perigo">
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> Zona de Perigo</h3>
+                <p>Ações irreversíveis para a exclusão do seu perfil no sistema.</p>
+            </div>
+            
+            <div class="perigo-conteudo">
+                <div class="perigo-texto">
+                    <strong>Deletar a minha conta PYPO</strong>
+                    <p>A exclusão da conta apagará permanentemente todo o seu progresso, estatísticas e acessos. Esta ação não poderá ser desfeita.</p>
+                </div>
+                <form action="{{ url_for('deletarConta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza absoluta que deseja deletar sua conta? Todos os seus dados serão apagados permanentemente.')">
+                    {{ formPerfil.csrf_token}}
+                    <button type="submit" class="btn-deletar-conta">
+                        <i class="fa-solid fa-user-xmark"></i> Excluir Conta
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,251 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at center, #4b5d68, #295c6d, #03536e);
+    height: 100vh;
+
+    margin: 0;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 30px 40px;
+    width: 900px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.container-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.titulo {
+    background-color: #3bb5fc;
+    color: #000;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#pergunta {
+    background-color: #b5dcf8;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.botoes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.botao {
+    background-color: #d8eafd;
+    color: #000;
+    border: none;
+    padding: 12px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao:hover {
+    background-color: #a9d3fa;
+}
+
+.dica {
+    position: absolute;
+    right: -200px;
+    top: 50px;
+    width: 200px;
+    color: #000;
+}
+
+.dica img {
+    max-width:400px;
+    height: auto;
+}
+
+.cubo{
+    width:40px;
+    margin-right:10px;
+}.acerto {
+    background-color: #4caf50;
+    color: white;
+}
+.acerto:hover {
+    background-color: #45a049;
+}
+
+.erro{
+    background-color: #f44336;
+    color: white;
+}
+.erro:hover {
+    background-color: #b92d2b;
+}
+.mascote {
+    width: 100%;
+}
+
+.botao_continuar {
+    display:flex;
+    flex-direction:row;
+    justify-content: end;
+    margin:10px;
+    margin-top:15px;
+}
+
+.botao_passar {
+    border: none;
+    background-color: #3bb5fc;
+    border-radius: 20px;
+    gap:15px;
+    font-size: 1.2rem;
+    padding: 12px;
+}
+
+.botao_passar:hover {
+    background-color:#87CEFA;
+}
+
+.icon1 {
+    font-size: 1.2rem;
+}
+
+/* --- BOTÃO FIXO NO CANTO SUPERIOR ESQUERDO --- */
+/* --- ESTILIZAÇÃO DO DETAILS / SUMMARY (BOTÃO SUPERIOR ESQUERDO) --- */
+./* --- AJUSTE NO DETAILS / SUMMARY --- */
+.mochila-retratil {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100; /* Aumentado para ficar acima de absolutamente tudo */
+}
+
+
+
+
+
+/* Remove a setinha padrão no Safari */
+.btn-mochila-fixo::-webkit-details-marker {
+    display: none;
+}
+
+.btn-mochila-fixo:hover {
+    background-color: #1e90ff;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* --- CONTEÚDO DA MOCHILA LATERAL --- */
+.btn-mochila-fixo {
+    position: relative;
+    z-index: 1200; /* Garante que o botão fique visível por cima do fundo da mochila */
+    background-color: #38b6ff;
+    color: #091220;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    list-style: none;
+    transition: transform 0.2s ease, background-color 0.2s;
+}
+
+/* Ajuste sutil na posição da mochila para não encavalar no botão */
+.mochila-lateral {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(9, 18, 32, 0.95);
+    backdrop-filter: blur(8px);
+    border-right: 3px solid #38b6ff;
+    padding: 90px 20px 25px 20px; /* Aumentei o padding superior (de 25px para 90px) para os itens começarem abaixo do botão */
+    box-sizing: border-box;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    z-index: 1050;
+}
+
+/* Quando o <details> estiver aberto, joga a mochila para a posição visível */
+.mochila-retratil[open] .mochila-lateral {
+    left: 0;
+}
+
+.mochila-header {
+    border-bottom: 1px solid rgba(56, 182, 255, 0.3);
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+}
+
+.mochila-header h3 {
+    margin: 0;
+    color: #38b6ff;
+    font-size: 1.4rem;
+}
+
+/* --- ITENS COM ANIMAÇÃO DE LANÇAMENTO --- */
+.mochila-itens {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.item-mochila {
+    background-color: rgba(13, 31, 61, 0.7);
+    border: 1px solid rgba(56, 182, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+/* Gatilho da animação quando o details abre */
+.mochila-retratil[open] .item-mochila {
+    animation: lancarItem 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.item-icone {
+    font-size: 1.6rem;
+}
+
+@keyframes lancarItem {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.item-1 { animation-delay: 0.05s; }
+.item-2 { animation-delay: 0.12s; }
+.item-3 { animation-delay: 0.19s; }

@@ -1,0 +1,59 @@
+{% extends "template.html" %}
+{% block cabecalho %}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/fase.css') }}"/>
+    <script src="{{ url_for('static', filename='js/fase.js') }}" defer></script>
+{% endblock %}
+
+{% block corpo %}
+  <div id="container-link" data-url-fase="{{ url_for('conclusaoFase', pontuacao=999999, idFase=777777) }}"></div>
+  <section>
+    <input type="hidden" name="listaExercicios" id="listaExercicios" value='{{ lista_exercicios | tojson }}'>
+    
+    <div class="container">
+      <div class="container-header">
+        <div class="titulo"><img src="{{ url_for('static', filename='imagens/fase 1/cubo_recortado.png') }}" alt="imagem cubo" class="cubo">Variáveis</div>
+        <div id="sequencia" class="titulo"><i class="fa-solid fa-square-check fa-beat" style="color: #0e2349;"></i>sequência: 0</div>
+        <div id="pontuacao" class="titulo">Pontos: 100</div>
+        <details class="mochila-retratil">
+        <summary class="btn-mochila-fixo titulo">
+          <i class="fa-solid fa-bag-shopping"></i>
+        <span>Mochila</span>
+        </summary>
+        <div class="mochila-lateral">
+          <div class="mochila-header">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <h3>Sua Mochila</h3>
+          </div>
+          <div class="mochila-itens">
+              <div class="item-mochila item-1"><span class="item-icone">🍮</span> Pudim</div>
+              <div class="item-mochila item-2"><span class="item-icone">🍌</span> Banana</div>
+              <div class="item-mochila item-3"><span class="item-icone">🍇</span> Uva</div>
+          </div>
+        </div>
+      </details>
+      </div>
+    
+      <div id="pergunta">Qual dessas é uma variável válida?</div>
+
+      <form method="POST">
+        <input type="hidden" name="lista_exercicios" id="lista_exercicios" value="{{ lista_exercicios }}">
+        <input type="hidden" name="proxima" value="{{ proxima }}">
+        <input type="hidden" id="idFase" name="idFase" value="{{ idFase }}">
+      </form>
+
+      <div class="botoes">
+        <button class="botao" id="A">my_var</button>
+        <button class="botao" id="B">int variavel</button>
+        <button class="botao" id="C">Pudim</button>
+        <button class="botao" id="D">pão frances</button>
+      </div>
+
+      <div class="botao_continuar"></div>
+
+      <div class="dica">
+        <img src="{{ url_for('static', filename='imagens/mascote.png') }}" alt="Mascote Pypo">
+      </div>
+    </div>
+  </section>
+{% endblock %}

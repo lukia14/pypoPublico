@@ -1,0 +1,33 @@
+{%extends "template.html"%}
+{%block cabecalho%}
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/login.css')}}"/>
+ {%endblock%}
+<script src="https://kit.fontawesome.com/74010bf13b.js" crossorigin="anonymous"></script>
+{%block corpo%}
+    <main class="container-main">
+        <div class="container-principal">
+            <h1>Login</h1>
+            <div class="entrar_metodos">
+                <button class="entrar_botoes"><i class="fa-brands fa-google"></i>Google</button>
+                <button class="entrar_botoes"><i class="fa-brands fa-github"></i>Git Hub</button>
+            </div>
+            <form action = "{{url_for('autenticar')}}" method="post">
+            <input type="hidden" name="proxima" value="{{ proxima }}">
+            {{ form.csrf_token() }}
+             {{form.nickname.label()}}
+              {{form.nickname(class="barra")}}
+              {{form.email.label()}}
+              {{form.email(class="barra")}}
+              {{form.senha.label()}}
+              {{form.senha(class="barra")}}
+              {{ form.enviar(class = "entrar") }}
+            
+            
+            <p class="text_apoio">Esqueceu a senha?<a href="" class="apoio" class="text_apoio">Clique aqui</a></p>
+            <p class="text_apoio">Caso não tenha uma conta, <a href="{{url_for('cadastrar')}}" class="apoio" class="text_apoio">Cadastrar</a></p>
+        </div>
+        <div>
+            <img src="../static/imagens/mascote.png" alt="">
+        </div>
+    </main>
+{%endblock%}

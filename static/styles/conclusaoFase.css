@@ -1,0 +1,102 @@
+:root{
+    --fundo: rgb(26, 63, 70);
+    --card: #1e1e1e;
+    --azul: #1E90FF;
+    --branco: #fff;
+}
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: var(--fundo);
+    font-family: Arial, sans-serif;
+}
+
+.container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.card{
+    background: var(--card);
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align:center;
+    color: var(--branco);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    animation: aparecer 0.8s ease-out forwards;
+}
+
+.div-titulo h1{
+    font-size: 2.5rem;
+    color: var(--azul);
+    margin-bottom: 10px;
+
+    animation: pulse 1.5s infinite;
+}
+
+.div-msg p{
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.div-botao button{
+    padding: 12px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--azul);
+    color: white;
+    transition: 0.3s;
+}
+
+.div-botao button:hover{
+    transform: scale(1.1);
+    background: #0d6efd;
+}
+
+
+@keyframes aparecer{
+    from{
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse{
+    0%{
+        transform: scale(1);
+        text-shadow: 0 0 10px var(--azul);
+    }
+    50%{
+        transform: scale(1.05);
+        text-shadow: 0 0 25px var(--azul);
+    }
+    100%{
+        transform: scale(1);
+        text-shadow: 0 0 10px var(--azul);
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
